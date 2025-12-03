@@ -179,6 +179,7 @@
     .course-card.comptia-sec::before { background: var(--orange); }
     .course-card.cisco::before { background: var(--purple); }
     .course-card.linux::before { background: #f472b6; }
+    .course-card.microsoft::before { background: #38bdf8; }
 
     .card-header {
       display: flex;
@@ -199,6 +200,7 @@
     .comptia-sec .course-code { color: var(--orange); }
     .cisco .course-code { color: var(--purple); }
     .linux .course-code { color: #f472b6; }
+    .microsoft .course-code { color: #38bdf8; }
 
     .cert-badge {
       display: inline-flex;
@@ -236,6 +238,11 @@
       background: rgba(244, 114, 182, 0.15); 
       border: 1px solid #f472b6;
       color: #f472b6;
+    }
+    .microsoft .cert-badge { 
+      background: rgba(56, 189, 248, 0.15); 
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
     }
 
     .course-name {
@@ -459,6 +466,19 @@
         </div>
         <h3 class="course-name">Intro to Linux/Unix</h3>
         <p class="course-description">Master the Linux command line, file systems, and system administration. Essential skills for cybersecurity, cloud computing, and DevOps careers.</p>
+      </div>
+
+      <!-- Microsoft Windows Server -->
+      <div class="course-card microsoft">
+        <div class="card-header">
+          <span class="course-code">PCT-112 / 113</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M3 12V6.75l6-1.32v6.48L3 12zm17-9v8.75l-10 .15V5.21L20 3zM3 13l6 .09v6.81l-6-1.15V13zm17 .25V22l-10-1.91V13.1l10 .15z"/></svg>
+            Microsoft Certified
+          </span>
+        </div>
+        <h3 class="course-name">Windows Server Fundamentals & Infrastructure</h3>
+        <p class="course-description">Learn Windows Server deployment, administration, and hybrid cloud integration. These courses map to the <span class="cert-name">Microsoft Certified: Windows Server Hybrid Administrator Associate</span> certification exams.</p>
       </div>
 
     </div>
