@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Valley College - Networking & Cybersecurity Programs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cyan: #00f0ff;
+      --cyan-glow: rgba(0, 240, 255, 0.6);
+      --green: #00ff88;
+      --orange: #ff6b35;
+      --purple: #a855f7;
+      --dark: #0a0e17;
+      --darker: #050810;
+      --card-bg: rgba(15, 25, 40, 0.85);
+    }
+
+    body {
+      background: var(--darker);
+      min-height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .poster {
+      width: 11in;
+      min-height: 17in;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #0a1628 0%, #0d0f1a 50%, #0a0e17 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 0.5in;
+    }
+
+    /* Animated circuit background */
+    .circuit-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.15;
+      background-image: 
+        linear-gradient(var(--cyan) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cyan) 1px, transparent 1px),
+        linear-gradient(var(--cyan) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, var(--cyan) 0.5px, transparent 0.5px);
+      background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* Floating nodes */
+    .node {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--cyan-glow), 0 0 40px var(--cyan-glow);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .node:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+    .node:nth-child(2) { top: 25%; right: 8%; animation-delay: 1s; }
+    .node:nth-child(3) { top: 60%; left: 3%; animation-delay: 2s; }
+    .node:nth-child(4) { top: 80%; right: 5%; animation-delay: 3s; }
+    .node:nth-child(5) { top: 45%; right: 3%; animation-delay: 0.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Header section */
+    .header {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 0.3in;
+    }
+
+    .college-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fff 0%, var(--cyan) 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.15in;
+      text-shadow: 0 0 40px var(--cyan-glow);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+    }
+
+    /* Main title */
+    .main-title {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 0.35in;
+    }
+
+    .main-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.1in;
+    }
+
+    .main-title h1 span {
+      display: block;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+
+    /* Certification cards */
+    .courses-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2in;
+      position: relative;
+      z-index: 10;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.22in 0.25in;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .course-card.comptia-net::before { background: var(--cyan); }
+    .course-card.comptia-a::before { background: var(--green); }
+    .course-card.comptia-sec::before { background: var(--orange); }
+    .course-card.cisco::before { background: var(--purple); }
+    .course-card.linux::before { background: #f472b6; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.1in;
+    }
+
+    .course-code {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .comptia-net .course-code { color: var(--cyan); }
+    .comptia-a .course-code { color: var(--green); }
+    .comptia-sec .course-code { color: var(--orange); }
+    .cisco .course-code { color: var(--purple); }
+    .linux .course-code { color: #f472b6; }
+
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .comptia-net .cert-badge { 
+      background: rgba(0, 240, 255, 0.15); 
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+    .comptia-a .cert-badge { 
+      background: rgba(0, 255, 136, 0.15); 
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+    .comptia-sec .cert-badge { 
+      background: rgba(255, 107, 53, 0.15); 
+      border: 1px solid var(--orange);
+      color: var(--orange);
+    }
+    .cisco .cert-badge { 
+      background: rgba(168, 85, 247, 0.15); 
+      border: 1px solid var(--purple);
+      color: var(--purple);
+    }
+    .linux .cert-badge { 
+      background: rgba(244, 114, 182, 0.15); 
+      border: 1px solid #f472b6;
+      color: #f472b6;
+    }
+
+    .course-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.08in;
+      line-height: 1.3;
+    }
+
+    .course-description {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+    }
+
+    .arrow-icon {
+      display: inline-block;
+      margin: 0 8px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .cert-name {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Cisco special card */
+    .cisco .cert-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer CTA */
+    .footer {
+      margin-top: 0.3in;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(0, 255, 136, 0.1) 100%);
+      border: 2px solid var(--cyan);
+      border-radius: 16px;
+      padding: 0.25in 0.3in;
+      display: inline-block;
+    }
+
+    .cta-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 0.08in;
+    }
+
+    .cta-url {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-url a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .benefits {
+      display: flex;
+      justify-content: center;
+      gap: 0.4in;
+      margin-top: 0.2in;
+      flex-wrap: wrap;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .benefit-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 240, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      font-size: 0.75rem;
+    }
+
+    /* Decorative elements */
+    .hex-pattern {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      opacity: 0.05;
+      background: repeating-conic-gradient(from 30deg, var(--cyan) 0deg 60deg, transparent 60deg 120deg);
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .poster {
+        margin: 0;
+        box-shadow: none;
+      }
+      .node, .circuit-bg {
+        animation: none;
+      }
+    }
+
+    @page {
+      size: 11in 17in;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <!-- Background effects -->
+    <div class="circuit-bg"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="node"></div>
+    <div class="hex-pattern"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <h2 class="college-name">Rock Valley College</h2>
+      <p class="tagline">Computer Information Systems Department</p>
+    </header>
+
+    <!-- Main Title -->
+    <div class="main-title">
+      <h1>Networking &<span>Cybersecurity</span></h1>
+      <p class="subtitle">Industry Certification Pathways</p>
+    </div>
+
+    <!-- Course Cards -->
+    <div class="courses-grid">
+      
+      <!-- Network+ -->
+      <div class="course-card comptia-net">
+        <div class="card-header">
+          <span class="course-code">PCT-110</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            CompTIA Network+
+          </span>
+        </div>
+        <h3 class="course-name">Network Essentials</h3>
+        <p class="course-description">Master networking concepts, infrastructure, operations, and security. This course maps directly to the <span class="cert-name">CompTIA Network+ Certification</span> exam.</p>
+      </div>
+
+      <!-- A+ -->
+      <div class="course-card comptia-a">
+        <div class="card-header">
+          <span class="course-code">PCT-262</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            CompTIA A+
+          </span>
+        </div>
+        <h3 class="course-name">A+ Essentials</h3>
+        <p class="course-description">Build foundational IT skills in hardware, software, troubleshooting, and customer service. Prepares you for the <span class="cert-name">CompTIA A+ Certification</span> exam.</p>
+      </div>
+
+      <!-- Security+ -->
+      <div class="course-card comptia-sec">
+        <div class="card-header">
+          <span class="course-code">PCT-130</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            CompTIA Security+
+          </span>
+        </div>
+        <h3 class="course-name">Intro to Network Security Fundamentals</h3>
+        <p class="course-description">Learn essential cybersecurity skills including threat analysis, risk management, and network defense. Maps to the <span class="cert-name">CompTIA Security+ Certification</span> exam.</p>
+      </div>
+
+      <!-- Cisco -->
+      <div class="course-card cisco">
+        <div class="card-header">
+          <span class="course-code">PCT-120 / 122 / 124</span>
+          <div class="cert-badges">
+            <span class="cert-badge">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              CCST
+            </span>
+            <span class="cert-badge">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              CCNA
+            </span>
+          </div>
+        </div>
+        <h3 class="course-name">Cisco Networking I, II & III</h3>
+        <p class="course-description">Comprehensive Cisco networking series covering routing, switching, and network administration. Prepares you for <span class="cert-name">Cisco CCST Networking</span> and <span class="cert-name">CCNA</span> certification exams.</p>
+      </div>
+
+      <!-- Linux -->
+      <div class="course-card linux">
+        <div class="card-header">
+          <span class="course-code">PCT-270</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+            Linux Fundamentals
+          </span>
+        </div>
+        <h3 class="course-name">Intro to Linux/Unix</h3>
+        <p class="course-description">Master the Linux command line, file systems, and system administration. Essential skills for cybersecurity, cloud computing, and DevOps careers.</p>
+      </div>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <footer class="footer">
+      <div class="cta-box">
+        <p class="cta-text">START YOUR IT CAREER TODAY</p>
+        <p class="cta-url"><a href="https://www.rockvalleycollege.edu">rockvalleycollege.edu</a></p>
+      </div>
+      <div class="benefits">
+        <div class="benefit">
+          <span class="benefit-icon">✓</span>
+          <span>Industry-Recognized Certifications</span>
+        </div>
+        <div class="benefit">
+          <span class="benefit-icon">✓</span>
+          <span>Hands-On Training</span>
+        </div>
+        <div class="benefit">
+          <span class="benefit-icon">✓</span>
+          <span>Career-Ready Skills</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
